@@ -10,7 +10,7 @@ const PrivateRoutes = () => {
     useEffect(() => {
         let localStorageData = localStorage.getItem('isLoggedIn');
         if (localStorageData === "false" || !localStorageData) navigate('/login')
-    }, []);
+    }, [navigate]);
 
     return (
         <div>

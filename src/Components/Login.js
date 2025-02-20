@@ -8,7 +8,7 @@ const Login = () => {
     useEffect(() => {
         let localStorageData = localStorage.getItem('isLoggedIn');
         if(localStorageData === "true") navigate('/') 
-    }, []);
+    }, [navigate]);
 
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");

@@ -8,7 +8,7 @@ const Register = () => {
   useEffect(() => {
     let localStorageData = localStorage.getItem('isLoggedIn');
     if (localStorageData === "true") navigate('/')
-  }, []);
+  }, [navigate]);
 
   const [formData, setFormData] = useState({
     username: "",
