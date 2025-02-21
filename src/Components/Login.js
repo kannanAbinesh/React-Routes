@@ -24,6 +24,7 @@ const Login = () => {
         });
     };
 
+    /* Submit functionality. */
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -54,10 +55,8 @@ const Login = () => {
                 <div className="login-form-wrapper">
 
                     <div className="login-header-wrapper">
-                        <h2 className="login-header">Sign up</h2>
-                        <span className="login-second-header">
-                            Please enter Email and password.
-                        </span>
+                        <h2 className="login-header">Sign in</h2>
+                        <span className="login-second-header">Please enter Email and password.</span>
                     </div>
 
                     <form onSubmit={handleSubmit}>
@@ -86,15 +85,11 @@ const Login = () => {
                         </div>
 
                         <div className="login-btn-wrapper">
-                            <button type="submit" className="login-btn">
-                                Login
-                            </button>
+                            <button type="submit" className="login-btn">Login</button>
                         </div>
 
                         <div className="login-link-btn-wrapper">
-                            <Link to={'/register'} className="login-link-btn">
-                                New to web page?
-                            </Link>
+                            <Link to={'/register'} className="login-link-btn">New to web page?</Link>
                         </div>
                     </form>
                 </div>
