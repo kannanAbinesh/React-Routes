@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<PrivateRoutes />}>
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </HashRouter>
