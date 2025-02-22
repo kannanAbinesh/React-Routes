@@ -3,8 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+/* Helpers. */
+import loginValidation from "../helpers/login";
+
 /* Images. */
 import banner from '../Assets/Images/loginBanner.svg';
+
+/* Styles. */
+import '../Assets/Styles/login.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,9 +18,7 @@ const Login = () => {
 
     useEffect(() => {
         let localStorageData = localStorage.getItem('isLoggedIn');
-        if (localStorageData === "true") {
-            navigate('/');
-        }
+        if (localStorageData === "true") navigate('/');
     }, [navigate]);
 
     const handleChange = (e) => {
@@ -28,14 +32,9 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!formData.email || !formData.password) {
-            toast.error('Please fill in all fields');
-            return '';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) {
-            toast.error('Invalid email format');
-            return '';
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i.test(formData?.password)) {
-            toast.error('Invalid password.');
+        let { isError, errorMessage } = loginValidation(formData);
+        if(isError) {
+            toast.error(errorMessage)
             return '';
         };
 
@@ -89,7 +88,7 @@ const Login = () => {
                         </div>
 
                         <div className="login-link-btn-wrapper">
-                            <Link to={'/register'} className="login-link-btn">New to web page?</Link>
+                            <Link to={'/register'} className="login-link-btn">New to web page ?</Link>
                         </div>
                     </form>
                 </div>
