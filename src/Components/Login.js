@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+/* Components. */
+import Loader from "./Loader";
+
 /* Helpers. */
 import loginValidation from "../helpers/login";
 
@@ -15,10 +18,14 @@ import '../Assets/Styles/login.css';
 const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         let localStorageData = localStorage.getItem('isLoggedIn');
-        if (localStorageData === "true") navigate('/');
+        if (localStorageData === "true") {
+            navigate('/');
+        };
+        setLoader(false);
     }, [navigate]);
 
     const handleChange = (e) => {
@@ -33,7 +40,7 @@ const Login = () => {
         e.preventDefault();
 
         let { isError, errorMessage } = loginValidation(formData);
-        if(isError) {
+        if (isError) {
             toast.error(errorMessage)
             return '';
         };
@@ -47,7 +54,7 @@ const Login = () => {
         } else toast.error('Invalid credentials.');
     };
 
-    return (
+    return loader ? <Loader /> : (
         <div className="login-wrapper">
             <div style={{ backgroundImage: `url(${banner})` }} className="login-banner" />
             <div className="login-form-container">
